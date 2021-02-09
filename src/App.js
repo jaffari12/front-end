@@ -5,14 +5,15 @@ import About from "./components/About";
 import NoMatch from "./components/NoMatch";
 import NavBar from "./components/NavBar"
 import Layout from './components/Layout';
-import Jubmotron from "./components/Jumbotron";
-
+import Jumbotron from "./components/Jumbotron";
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
     <React.Fragment>
         <NavBar/>
-        <Jubmotron/>
+        <Jumbotron/>
     <Layout>
        <Router>
        <Switch>
@@ -22,6 +23,8 @@ function App() {
         </Switch>
       </Router>
       </Layout>
+      <Login/>
+      <Register/>
     </React.Fragment>
   );
 }

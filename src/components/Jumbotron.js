@@ -3,6 +3,7 @@ import { Jumbotron as Jumbo, Container, Button } from "react-bootstrap";
 import styled from 'styled-components';
 import bgimage from "../assets/bgimage.jpg";
 
+
 const Styles = styled.div`
 .jumbo{
     background: url(${bgimage}) no-repeat fixed bottom;
@@ -43,13 +44,16 @@ const Jumbotron = () => {
                     This forum envelopes the today's concerns of an unsocial indivduals.
                 </p>
                 <p>
-                <a className="btn button" href="/login" role="button">Learn more</a>
+                <Button href="/login">Learn more!</Button>
                 
                 </p>
+                
             </Container>
 
-            </Jumbo>
+           
 
+            </Jumbo>
+           
         </Styles>
     );
 }
