@@ -3,6 +3,7 @@ import axios from "axios";
 import './LoginForm.css';
 import { withRouter } from "react-router-dom"
 
+
 function LoginForm(props) {
     const [state , setState] = useState({
         email : "",
@@ -57,7 +58,10 @@ function LoginForm(props) {
 
     
     return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+<div className="d-flex flex-row bd-highlight mb-3">
+  
+
+      <div className="card  col-12 col-lg-4 login-card mt-2 ">
             <form>
                 <div className="form-group text-left">
                 <label htmlFor="exampleInputEmail1">Email address</label>
@@ -101,6 +105,8 @@ function LoginForm(props) {
             </div>
             
         </div>
+        </div>      
+               
     );
 }
 
