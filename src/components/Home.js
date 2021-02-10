@@ -1,21 +1,56 @@
 import React from 'react';
+import { Jumbotron as Jumbo, Container, Button } from "react-bootstrap";
+import styled from 'styled-components';
+import imageBg from "../assets/imageBg.jpg";
+
+const Styles = styled.div`
+.jumbo{
+    
+    background: url(${imageBg}) no-repeat fixed bottom;
+    background-size: cover;
+    height: 900px;
+    color: #f4f9f9;
+    position: relative;
+    z-index: -2;
+} 
+
+.button{
+    background: rgb(63,94,251);
+    background: linear-gradient(58deg, rgba(63,94,251,1) 20%, rgba(252,70,107,1) 100%);
+    color: #f4f9f9;
+
+}
+
+.overlay{
+    background-color: #000;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+`;
 
 
 const Home = () => {
   return (
-    <>
-     
-     <div>
-        <h2>Home page</h2>
-        <p>
-        Lorem Ipsum is simply dummy text of the printing and
-         typesetting industry. Lorem Ipsum has been the industry's 
-         standard dummy text ever since the 1500s, when an unknown
-          printer took a galley of type and scrambled it to make
-           a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
-    </>
+    <Styles>
+        <Jumbo fluid className ="jumbo">
+            <div className="overlay"></div>
+            <Container className="mt-auto">
+                <h1>Welcome to Coliseum</h1>
+                <p>
+                    This forum envelopes the today's concerns of an unsocial indivduals. You can share your post here!
+                </p>
+                <p>
+                <Button href="/register">Register!</Button>
+                </p>
+                
+        </Container>           
+          </Jumbo>     
+    </Styles>
     
   );
 };
