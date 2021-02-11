@@ -1,7 +1,15 @@
 .login-card {
-    min-height: 60vh;
+    min-height: 50vh;
 }
+.login-bg{
+background-image: url('../assets/imageBg.jpg');
+background-size: auto;
+height: 500px;
+   
+    position: relative;
+   
 
+}
 .registerMessage {
     margin-top: 10vh;
 }

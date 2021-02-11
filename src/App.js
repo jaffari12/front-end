@@ -4,7 +4,6 @@ import Home from "./components/Home";
 import About from "./components/About";
 import NoMatch from "./components/NoMatch";
 import NavBar from "./components/NavBar"
-import Layout from './components/Layout';
 import RegistrationForm from './components/RegistrationForm';
 import LoginForm from './components/LoginForm';
 
@@ -14,10 +13,8 @@ function App() {
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <React.Fragment>
-        <NavBar/>
-        
-    <Layout>
-       <Router>
+      <NavBar/>
+     <Router>
        <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/about" component={About}/>
@@ -28,9 +25,7 @@ function App() {
             </Route>
           <Route component={NoMatch}/>
         </Switch>
-      </Router>
-      </Layout>
-    
+      </Router> 
     </React.Fragment>
   );
 }

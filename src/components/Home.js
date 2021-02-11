@@ -39,7 +39,7 @@ const Home = () => {
     <Styles>
         <Jumbo fluid className ="jumbo">
             <div className="overlay"></div>
-            <Container className="mt-auto">
+            <Container className="mt-5 ml-6 text-auto">
                 <h1>Welcome to Coliseum</h1>
                 <p>
                     This forum envelopes the today's concerns of an unsocial indivduals. You can share your post here!

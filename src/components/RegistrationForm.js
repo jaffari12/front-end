@@ -3,6 +3,7 @@ import axios from 'axios';
 import './RegistrationForm.css';
 import { withRouter } from "react-router-dom";
 
+
 function RegistrationForm(props) {
     const [state , setState] = useState({
         username: "",
@@ -64,7 +65,8 @@ function RegistrationForm(props) {
         }
     }
     return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+    <div className="d-flex justify-content-center flex-row bd-highlight ml-3 mr-3 mt-5">
+        <div className="card col-12 col-lg-4 login-card mt-5 ">
             <form>
             <div className="form-group text-left">
                     <label htmlFor="username">Username</label>
@@ -125,6 +127,7 @@ function RegistrationForm(props) {
             </div>
             
         </div>
+     </div>
     )
 }
 

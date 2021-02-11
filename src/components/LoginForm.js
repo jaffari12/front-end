@@ -3,7 +3,6 @@ import axios from "axios";
 import './LoginForm.css';
 import { withRouter } from "react-router-dom"
 
-
 function LoginForm(props) {
     const [state , setState] = useState({
         email : "",
@@ -58,54 +57,55 @@ function LoginForm(props) {
 
     
     return(
-<div className="d-flex flex-row bd-highlight mb-3">
-  
+       
+    <div className= "d-flex justify-content-center flex-row bd-highlight ml-3 mr-3 mt-5">  
+        <div className="card  col-12 col-lg-4 login-card mt-5 ">
+                <form>
+                    <div className="form-group pt-3 text-left">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <input type="email" 
+                        className="form-control" 
+                        id="email" 
+                        aria-describedby="emailHelp" 
+                        placeholder="Enter email" 
+                        alue={state.email}
+                        onChange={handleChange}
+                        
+                    />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div className="form-group text-left">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input type="password" 
+                        className="form-control" 
+                        id="password" 
+                        placeholder="Password"
+                        value={state.password}
+                        onChange={handleChange} 
+                        
+                    />
+                    </div>
+                    <div className="form-check">
+                    </div>
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary"
+                        onClick={handleSubmitClick}
+                    
+                    >Log in</button>
+                </form>
+                <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
+                    {state.successMessage && redirectToHome()}
+                </div>
+                <div className="registerMessage">
+                    <span>Dont have an account? </span>
+                    <span className="loginText" onClick={() => redirectToRegister()}>Register</span> 
+                </div>
+                
+            </div>
+    </div>    
 
-      <div className="card  col-12 col-lg-4 login-card mt-2 ">
-            <form>
-                <div className="form-group text-left">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" 
-                       className="form-control" 
-                       id="email" 
-                       aria-describedby="emailHelp" 
-                       placeholder="Enter email" 
-                       alue={state.email}
-                       onChange={handleChange}
-                       
-                />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group text-left">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" 
-                       className="form-control" 
-                       id="password" 
-                       placeholder="Password"
-                       value={state.password}
-                       onChange={handleChange} 
-                       
-                />
-                </div>
-                <div className="form-check">
-                </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                   
-                >Log in</button>
-            </form>
-            <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
-                {state.successMessage && redirectToHome()}
-            </div>
-            <div className="registerMessage">
-                <span>Dont have an account? </span>
-                <span className="loginText" onClick={() => redirectToRegister()}>Register</span> 
-            </div>
-            
-        </div>
-        </div>      
+        
                
     );
 }
