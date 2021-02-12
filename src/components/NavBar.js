@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
@@ -41,19 +42,29 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Item>
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link>
+                <NavLink to="/">Home</NavLink>
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link>
+                <NavLink to="/about">About</NavLink>
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link>
+                <NavLink to="/login">Login</NavLink>
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/register">Register</Nav.Link>
+              <Nav.Link>
+                <NavLink to="/register">Register</NavLink>
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/Posts">Posts</Nav.Link>
+              <Nav.Link>
+                <NavLink to="/posts">Posts</NavLink>
+              </Nav.Link>
             </Nav.Item>
           </Nav>
           {/* {localStorage.getItem("user-info") ? (

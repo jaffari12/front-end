@@ -15,9 +15,9 @@ function App() {
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <React.Fragment>
-      <NavBar />
-
       <Router>
+        <NavBar />
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
@@ -29,7 +29,8 @@ function App() {
               updateTitle={updateTitle}
             />
           </Route>
-          <Route path="/posts" component={Posts} />
+          <Route exact path="/posts" component={Posts} />
+          <Route path="/posts/:id" component={Posts} />
           <Route path="/submit-link" component={submitLinkPost} />
           <Route path="/submit-text" component={submitTextPost} />
           <Route component={NoMatch} />
