@@ -22,7 +22,12 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegistrationForm} />
+          <Route path="/register" />
+          <RegistrationForm
+            showError={updateErrorMessage}
+            updateTitle={updateTitle}
+          />
+
           <Route path="/login">
             <LoginForm
               showError={updateErrorMessage}
