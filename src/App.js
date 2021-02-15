@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -11,8 +11,6 @@ import submitLinkPost from "./components/posts/submitPost/submitLinkPost";
 import submitTextPost from "./components/posts/submitPost/submitTextPost";
 
 function App() {
-  const [title, updateTitle] = useState(null);
-  const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <React.Fragment>
       <Router>
@@ -22,18 +20,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/register" />
-          <RegistrationForm
-            showError={updateErrorMessage}
-            updateTitle={updateTitle}
-          />
+          <Route path="/register" component={RegistrationForm} />
 
-          <Route path="/login">
-            <LoginForm
-              showError={updateErrorMessage}
-              updateTitle={updateTitle}
-            />
-          </Route>
           <Route exact path="/posts" component={Posts} />
           <Route path="/posts/:id" component={Posts} />
           <Route path="/submit-link" component={submitLinkPost} />

@@ -4,7 +4,6 @@ import axios from "axios";
 
 import "./Posts.css";
 import Utility from "../../Utility";
-import Pagination from "../../Pagination";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -70,7 +69,8 @@ export default function Posts() {
   );
 }
 
-/*export default Posts;
+/*
+export default Posts;
 
 if (this.state.posts) {
   return (
@@ -155,4 +155,5 @@ if (this.state.posts) {
           ))}
       </div>
     </div>
-  );*/
+  );
+  */

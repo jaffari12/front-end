@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 
 function LoginForm(props) {
+  const { login, isLoggedIn } = useContext(AuthContext);
   const [state, setState] = useState({
     email: "",
     password: "",
     successMessage: null,
   });
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setState((prevState) => ({
@@ -32,9 +35,6 @@ function LoginForm(props) {
             ...prevState,
             successMessage: "Login successful. Redirecting to home page..",
           }));
-          // localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-          // redirectToHome();
-          // props.showError(null)
         } else if (response.code === 204) {
           props.showError("Username and password do not match");
         } else {
@@ -45,14 +45,16 @@ function LoginForm(props) {
         console.log(error);
       });
   };
-  const redirectToHome = () => {
-    // props.updateTitle('Home')
-    props.history.push("/");
-  };
+
+  // const redirectToHome = () => {
+  //   // props.updateTitle('Home')
+  //   props.history.push("/");
+  // };
   const redirectToRegister = () => {
     props.history.push("/register");
     // props.updateTitle('Register');
   };
+  if (isLoggedIn()) return <Redirect to="/" />;
 
   return (
     <div className="d-flex justify-content-center flex-row bd-highlight ml-3 mr-3 mt-5">
@@ -66,7 +68,7 @@ function LoginForm(props) {
               id="email"
               aria-describedby="emailHelp"
               placeholder="Enter email"
-              alue={state.email}
+              value={state.email}
               onChange={handleChange}
             />
             <small id="emailHelp" className="form-text text-muted">
@@ -88,7 +90,10 @@ function LoginForm(props) {
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={handleSubmitClick}
+            onClick={(e) => {
+              e.preventDefault();
+              login(state);
+            }}
           >
             Log in
           </button>
@@ -98,7 +103,7 @@ function LoginForm(props) {
           style={{ display: state.successMessage ? "block" : "none" }}
           role="alert"
         >
-          {state.successMessage && redirectToHome()}
+          {/* {state.successMessage && redirectToHome()} */}
         </div>
         <div className="registerMessage">
           <span>Dont have an account? </span>

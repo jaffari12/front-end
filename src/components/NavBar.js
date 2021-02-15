@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
+import "./NavBar.css";
 
 const Styles = styled.div`
   .navbar {
@@ -27,12 +28,15 @@ const Styles = styled.div`
 `;
 
 const NavBar = () => {
-  //   let user = JSON.parse(localStorage.getItem("user-info"));
-  //   const history = useHistory();
-  //   function logOut() {
-  //     localStorage.clear();
-  //     history.push("/login");
-  //   }
+  const { logout, isLoggedIn } = useContext(AuthContext);
+  // const [logged, setLogged] = useState(isLoggedIn());
+
+  const handleLogin = () => {
+    if (isLoggedIn()) {
+      logout();
+      //setLogged(isLoggedIn());
+    }
+  };
 
   return (
     <Styles>
@@ -43,37 +47,42 @@ const NavBar = () => {
           <Nav className="ml-auto">
             <Nav.Item>
               <Nav.Link>
-                <NavLink to="/">Home</NavLink>
+                <NavLink className="nav-text" to="/">
+                  Home
+                </NavLink>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link>
-                <NavLink to="/about">About</NavLink>
+                <NavLink className="nav-text" to="/about">
+                  About
+                </NavLink>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link>
-                <NavLink to="/login">Login</NavLink>
+                <NavLink onClick={handleLogin} className="nav-text" to="/login">
+                  {isLoggedIn() ? "Logout" : "Login"}
+                </NavLink>
               </Nav.Link>
             </Nav.Item>
+            {isLoggedIn() ? null : (
+              <Nav.Item>
+                <Nav.Link>
+                  <NavLink className="nav-text" to="/register">
+                    Register
+                  </NavLink>
+                </Nav.Link>
+              </Nav.Item>
+            )}
             <Nav.Item>
               <Nav.Link>
-                <NavLink to="/register">Register</NavLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <NavLink to="/posts">Posts</NavLink>
+                <NavLink className="nav-text" to="/posts">
+                  Posts
+                </NavLink>
               </Nav.Link>
             </Nav.Item>
           </Nav>
-          {/* {localStorage.getItem("user-info") ? (
-            <Nav>
-              <NavDropdown title={user && user.name}>
-                <NavDropdown.Item onClick={logOut}>Logout</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          ) : null} */}
         </Navbar.Collapse>
       </Navbar>
     </Styles>
