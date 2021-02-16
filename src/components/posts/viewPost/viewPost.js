@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+
 import axios from "axios";
 
-import "./ViewPost.css";
+import "./viewPost.css";
 import Utility from "../../../Utility";
 import SubmitComment from "../comments/submitComment";
-import DeleteComment from "../comments/deleteComments";
-import EditPost from "../editPost/EditPost";
+import DeleteComment from "../comments/deleteComment";
+import EditPost from "../editPost/editPost";
 
 class ViewPost extends Component {
   constructor() {
@@ -14,25 +15,26 @@ class ViewPost extends Component {
       post: null,
       comments: [],
     };
-    this.handleSort = this.handleSort.bind(this);
+
     this.handleChange = this.handleChange.bind(this);
     this.deletePost = this.deletePost.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getPost();
   }
 
   getPost() {
-    let postTitle = this.props.match.params.title;
-    let id = this.props.match.params.id;
+    //let postTitle = this.props.match.params.title;
+    const { id } = this.props.match.params;
+
     axios
-      .get(`/api/post/${postTitle}/${id}`)
+      .get(`http://localhost:5000/posts/${id}`)
       .then((response) => {
-        //console.log(response.data);
+        // console.log(response.data);
         return this.setState({
-          post: response.data,
-          comments: response.data._postId.reverse(),
+          post: response.data.data.post,
+          comments: response.data.data.comments,
         });
       })
       .catch((error) => {
@@ -69,7 +71,7 @@ class ViewPost extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.state.comments);
     if (this.state.post && this.state.post !== "deleted") {
       const { post, comments } = this.state;
       return (
@@ -131,55 +133,53 @@ class ViewPost extends Component {
               onClick={this.handleSort}
               type="button"
               className="btn btn-elegant btn-sm"
-            >
-              <i className="fa fa-sort" aria-hidden="true"></i>
-              &nbsp; {sort}
-            </button>
+            ></button>
             <SubmitComment
               postId={this.props.match.params.id}
               title={this.props.match.params.title}
               url={this.props.match.url}
             />
-            {comments.map((comment) => {
-              if (!comment.isDeleted) {
-                return (
-                  <div key={comment.id}>
-                    <blockquote className="blockquote">
-                      <div
-                        dangerouslySetInnerHTML={{ __html: comment.text }}
-                      ></div>
-                      {comment._userId && !comment._userId.isDeleted ? (
-                        <footer className="blockquote-footer">
-                          {comment._userId.username},{" "}
-                          {Utility.parseDate(comment.createdDt).elapsed}
-                        </footer>
-                      ) : (
-                        <footer className="blockquote-footer">
-                          deleted,{" "}
-                          {Utility.parseDate(comment.createdDt).elapsed}
-                        </footer>
-                      )}
-                      {comment._userId &&
-                        this.props.user &&
-                        this.props.user.username ===
-                          comment._userId.username && (
-                          <DeleteComment id={comment.id} />
+            {this.state.comments &&
+              this.state.comments.map((comment) => {
+                if (!comment.isDeleted) {
+                  return (
+                    <div key={comment.id}>
+                      <blockquote className="blockquote">
+                        <div
+                          dangerouslySetInnerHTML={{ __html: comment.text }}
+                        ></div>
+                        {comment._userId && !comment._userId.isDeleted ? (
+                          <footer className="blockquote-footer">
+                            {comment._userId.username},{" "}
+                            {Utility.parseDate(comment.createdDt).elapsed}
+                          </footer>
+                        ) : (
+                          <footer className="blockquote-footer">
+                            deleted,{" "}
+                            {Utility.parseDate(comment.createdDt).elapsed}
+                          </footer>
                         )}
-                    </blockquote>
-                  </div>
-                );
-              } else if (comment.isDeleted) {
-                return (
-                  <div key={comment.id}>
-                    <p className="mb-0 text-muted">
-                      comment deleted{" "}
-                      {Utility.parseDate(comment.createdDt).elapsed}
-                    </p>
-                  </div>
-                );
-              }
-              return null;
-            })}
+                        {comment._userId &&
+                          this.props.user &&
+                          this.props.user.username ===
+                            comment._userId.username && (
+                            <DeleteComment id={comment.id} />
+                          )}
+                      </blockquote>
+                    </div>
+                  );
+                } else if (comment.isDeleted) {
+                  return (
+                    <div key={comment.id}>
+                      <p className="mb-0 text-muted">
+                        comment deleted{" "}
+                        {Utility.parseDate(comment.createdDt).elapsed}
+                      </p>
+                    </div>
+                  );
+                }
+                return null;
+              })}
           </div>
         </div>
       );

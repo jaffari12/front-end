@@ -9,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import Posts from "./components/posts/Posts";
 import submitLinkPost from "./components/posts/submitPost/submitLinkPost";
 import submitTextPost from "./components/posts/submitPost/submitTextPost";
+import ViewPost from "./components/posts/viewPost/viewPost";
 
 function App() {
   return (
@@ -23,7 +24,10 @@ function App() {
           <Route path="/register" component={RegistrationForm} />
 
           <Route exact path="/posts" component={Posts} />
-          <Route path="/posts/:id" component={Posts} />
+          <Route
+            path="/posts/:id"
+            render={(props) => <ViewPost {...props} />}
+          />
           <Route path="/submit-link" component={submitLinkPost} />
           <Route path="/submit-text" component={submitTextPost} />
           <Route component={NoMatch} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 
 import "./Posts.css";
@@ -38,16 +38,19 @@ export default function Posts() {
               <div className="card-body">
                 {post.link ? (
                   <div className="flex-row">
-                    <a className="d-inline-flex p-2" href={post.link}>
+                    <Link
+                      className="d-inline-flex p-2"
+                      to={`/posts/${post._id}`}
+                    >
                       <h4 className="card-title h4-responsive">{post.title}</h4>
                       &nbsp;
                       <i className="fa fa-external-link" aria-hidden="true"></i>
-                    </a>
+                    </Link>
                   </div>
                 ) : (
-                  <NavLink to={`/posts/${post.id}`}>
+                  <Link to={`/posts/${post._id}`}>
                     <h4 className="card-title h4-responsive">{post.title}</h4>
-                  </NavLink>
+                  </Link>
                 )}
 
                 <p className="card-text">by {post._userId.username}</p>

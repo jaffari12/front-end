@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
 
-import "./EditPost.css";
+import "./editPost.css";
 import Utility from "../../../Utility";
 
 class EditPost extends Component {
