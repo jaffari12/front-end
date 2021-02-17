@@ -1,3 +1,31 @@
 .header {
-    margin-top: 2rem;
+  margin-top: 2rem;
+}
+
+.secondary {
+  background-color: #8ba9ec;
+  background-image: linear-gradient(135deg, #8ba9ec 0%, #be95e2 100%);
+}
+
+.bg-color {
+  color: white;
+
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #41a0d0;
+  background-image: linear-gradient(
+    43deg,
+    #41a0d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+}
+
+.nav-color {
+  color: white;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
 }

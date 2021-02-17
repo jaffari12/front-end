@@ -30,11 +30,13 @@ function LoginForm(props) {
     axios
       .post("http://localhost:5000/auth/login", payload)
       .then(function (response) {
+        console.log(response);
         if (response.status === 200) {
           setState((prevState) => ({
             ...prevState,
             successMessage: "Login successful. Redirecting to home page..",
           }));
+          props.handleUserId(response.data.id);
         } else if (response.code === 204) {
           props.showError("Username and password do not match");
         } else {

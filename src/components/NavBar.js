@@ -41,7 +41,9 @@ const NavBar = () => {
   return (
     <Styles>
       <Navbar expand="lg">
-        <Navbar.Brand href="#home">Coliseum</Navbar.Brand>
+        <Navbar.Brand className="text" href="#home">
+          Coliseum
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
@@ -52,13 +54,7 @@ const NavBar = () => {
                 </NavLink>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <NavLink className="nav-text" to="/about">
-                  About
-                </NavLink>
-              </Nav.Link>
-            </Nav.Item>
+
             <Nav.Item>
               <Nav.Link>
                 <NavLink onClick={handleLogin} className="nav-text" to="/login">

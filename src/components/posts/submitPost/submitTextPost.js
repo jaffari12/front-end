@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import ReactQuill from "react-quill";
+import cookies from "js-cookie";
 
 import "./submitPost.css";
 import Utility from "../../../Utility";
@@ -15,10 +16,12 @@ class SubmitTextPost extends Component {
       success: null,
       response: null,
       authenticated: null,
+      newPostId: null,
     };
     this.submitFormOnClick = this.submitFormOnClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
+    console.log(cookies.get("id"));
   }
 
   submitFormOnClick(e) {
@@ -31,20 +34,28 @@ class SubmitTextPost extends Component {
     }
 
     axios
-      .post("/api/submitNewPost", { title, text })
+      .post(
+        "http://localhost:5000/posts",
+        {
+          title,
+          text,
+          _userId: this.props.userId,
+        },
+        { headers: { authorization: "Bearer " + cookies.get("token") } }
+      )
       .then((response) => {
-        console.log(response);
         if (response.data.authenticated === false) {
           this.setState({
             success: false,
             authenticated: false,
           });
         } else {
+          console.log(response.data.data[0]._id);
           this.setState({
             success: true,
             authenticated: true,
+            newPostId: response.data.data[0]._id,
           });
-          window.location.reload();
         }
       })
       .catch((error) => {
@@ -98,15 +109,13 @@ class SubmitTextPost extends Component {
               </div>
               <hr />
               <div className="flex-row">
-                <button type="submit" className="btn btn-elegant">
-                  Submit
-                </button>
+                <button className="btn btn-elegant">Submit</button>
               </div>
             </form>
             {this.state.success && (
               <Redirect
                 to={{
-                  pathname: "/",
+                  pathname: `/posts/${this.state.newPostId}`,
                 }}
               />
             )}

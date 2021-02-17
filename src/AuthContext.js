@@ -6,16 +6,21 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const userToken = cookies.get("token");
+  const id = cookies.get("id");
   const [authToken, setAuthToken] = useState(userToken);
   const [error, setError] = useState(false);
+  const [userId, setUserId] = useState(id);
 
   const setCookieOrError = (res) => {
-    const { success, token } = res.data;
+    const { success, token, id } = res.data;
     //console.log(success, token);
+    console.log(id);
 
     if (success) {
       cookies.set("token", token);
       setAuthToken(token);
+      cookies.set("id", id);
+      setUserId(id);
     } else {
       setError(true);
     }
@@ -59,6 +64,7 @@ const AuthContextProvider = ({ children }) => {
         login,
         register,
         logout,
+        userId,
       }}
     >
       {children}
