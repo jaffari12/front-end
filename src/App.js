@@ -10,6 +10,7 @@ import Posts from "./components/posts/Posts";
 import submitLinkPost from "./components/posts/submitPost/submitLinkPost";
 import SubmitTextPost from "./components/posts/submitPost/submitTextPost";
 import ViewPost from "./components/posts/viewPost/viewPost";
+import SubmitComment from "./components/posts/comments/submitComment";
 
 function App() {
   const { userId } = useContext(AuthContext);
@@ -28,13 +29,14 @@ function App() {
           <Route exact path="/posts" render={() => <Posts />} />
           <Route
             path="/posts/:id"
-            render={(props) => <ViewPost {...props} />}
+            render={(props) => <ViewPost {...props} userId={userId} />}
           />
           <Route path="/submit-link" component={submitLinkPost} />
           <Route
             path="/submit-text"
             render={() => <SubmitTextPost userId={userId} />}
           />
+          <Route path="/submit-comment" component={SubmitComment} />
           <Route component={NoMatch} />
         </Switch>
       </Router>

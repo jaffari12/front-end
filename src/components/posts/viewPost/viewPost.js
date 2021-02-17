@@ -135,6 +135,7 @@ class ViewPost extends Component {
               className="btn btn-elegant btn-sm"
             ></button>
             <SubmitComment
+              userId={this.props.userId}
               postId={this.props.match.params.id}
               title={this.props.match.params.title}
               url={this.props.match.url}

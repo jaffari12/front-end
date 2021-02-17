@@ -12,7 +12,7 @@ class SubmitComment extends Component {
       text: "",
       success: false,
     };
-
+    console.log(props);
     this.submitFormOnClick = this.submitFormOnClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -20,20 +20,21 @@ class SubmitComment extends Component {
   submitFormOnClick(e) {
     e.preventDefault();
     const { text } = this.state;
-    let postTitle = this.props.title.split(" ").join("%20");
-    let postId = this.props._postId;
+    let _userId = this.props.userId;
+    let _postId = this.props.postId;
     let postLink = this.props.url.split(" ").join("%20");
 
     axios
-      .post(`/api/post/${postTitle}/${postId}/submitComment`, {
+      .post("http://localhost:5000/comments", {
         text,
-        postId,
+        _userId,
+        _postId,
         postLink,
       })
       .then((response) => {
-        this.setState({ success: true });
-        console.log(response);
+        // console.log(response);
         window.location.reload();
+        this.setState({ success: true });
       });
   }
 
@@ -45,23 +46,24 @@ class SubmitComment extends Component {
     const { text } = this.state;
     return (
       <div>
-        <p>
+        {/* <p>
           <a
             className="btn btn-elegant btn-sm"
             data-toggle="collapse"
             href="#submitCommentForm"
             aria-expanded="false"
             aria-controls="submitCommentForm"
-          >
+          ></a>
             Comment on the post
-          </a>
-        </p>
+          
+        </p> */}
         <form onSubmit={this.submitFormOnClick}>
-          <div className="collapse" id="submitCommentForm">
+          <div id="submitCommentForm">
             <div className="submit-text-form">
               <div className="md-form">
                 <ReactQuill
                   className="text-form"
+                  placeholder="Comment"
                   value={text}
                   modules={Utility.toolbar}
                   onChange={this.handleChange}
