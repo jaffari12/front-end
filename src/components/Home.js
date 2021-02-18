@@ -1,5 +1,5 @@
 import React from "react";
-import { Jumbotron as Jumbo, Container, Button } from "react-bootstrap";
+import { Jumbotron as Jumbo, Container } from "react-bootstrap";
 import styled from "styled-components";
 import imageBg from "../assets/imageBg.jpg";
 
@@ -23,6 +23,18 @@ const Styles = styled.div`
     color: #f4f9f9;
   }
 
+  h1 {
+    font-size: 5rem;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+  }
+
+  .para {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 2rem;
+    padding-top: 20px;
+  }
   .overlay {
     background-color: #000;
     opacity: 0.3;
@@ -38,13 +50,14 @@ const Styles = styled.div`
 const Home = () => {
   return (
     <Styles>
-      <Jumbo fluid className="jumbo">
+      <Jumbo fluid className="jumbo ">
         <div className="overlay"></div>
-        <Container className="mt-5 ml-6 text-auto">
-          <h1>Welcome to Coliseum</h1>
-          <p>
-            Aim for this forum to understand and envelope concerns of an
-            unsocial [not anti-social] indivduals. !
+        <Container className="flex align-items-center text-center mt-5 ml-6  ">
+          <h1>Welcome to Coliseum </h1>
+          <p className="para">
+            Aim of this forum to envelope the concerns of an indivdual who
+            refrain/reluctant to connect the world through digital social media
+            platform..lets explore to improvise !
           </p>
         </Container>
       </Jumbo>

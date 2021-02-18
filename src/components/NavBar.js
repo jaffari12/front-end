@@ -71,13 +71,15 @@ const NavBar = () => {
                 </Nav.Link>
               </Nav.Item>
             )}
-            <Nav.Item>
-              <Nav.Link>
-                <NavLink className="nav-text" to="/posts">
-                  Posts
-                </NavLink>
-              </Nav.Link>
-            </Nav.Item>
+            {!isLoggedIn() ? null : (
+              <Nav.Item>
+                <Nav.Link>
+                  <NavLink className="nav-text" to="/posts">
+                    Posts
+                  </NavLink>
+                </Nav.Link>
+              </Nav.Item>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
